@@ -1,6 +1,6 @@
 es-controller-yaml(parent, vars) ::= <<
-apiVersion: v1
-kind: ReplicationController
+apiVersion: extensions/v1beta1
+kind: Deployment
 metadata:
   name: elasticsearch-logging-v1
   namespace: kube-system
@@ -10,14 +10,12 @@ metadata:
 spec:
   replicas: 1
   selector:
-    k8s-app: elasticsearch-logging
-    version: v1
+    matchLabels:
+      k8s-app: elasticsearch-logging
   template:
     metadata:
       labels:
         k8s-app: elasticsearch-logging
-        version: v1
-        kubernetes.io/cluster-service: "true"
     spec:
       containers:
       - image: <vars.elasticsearch.image.name>:<vars.elasticsearch.image.version>
