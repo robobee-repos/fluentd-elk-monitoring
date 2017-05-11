@@ -6,16 +6,9 @@ metadata:
   namespace: kube-system
 data:
   elasticsearch.yml: |-
-    path:
-      logs: /var/log/elasticsearch
-      data: /data
     cluster.name: <vars.elasticsearch.cluster.name>
     network.host: 0.0.0.0
-    bootstrap.memory_lock: true
-    discovery.zen.ping.unicast.hosts:
-      - elasticsearch-logging
     discovery.zen.minimum_master_nodes: <vars.elasticsearch.master_nodes>
-    xpack.security.enabled: false
   log4j2.properties: |-
     status = error
 

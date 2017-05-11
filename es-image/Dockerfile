@@ -1,19 +1,18 @@
 FROM docker.elastic.co/elasticsearch/elasticsearch:5.4.0
 
+WORKDIR /usr/share/elasticsearch
+
 USER root
 
-ADD entry.sh /
+ADD entry.sh bin/entry.sh
 
 RUN set -x \
-    && chmod +x /entry.sh
+    && chmod +x bin/entry.sh
 
 USER elasticsearch
 
-WORKDIR /usr/share/elasticsearch
-
 RUN set -x \
-    && elasticsearch-plugin remove x-pack
+    && elasticsearch-plugin remove x-pack \
+    && rm -rf /usr/share/elasticsearch/config/x-pack
 
-ENTRYPOINT ["/entry.sh"]
-
-CMD ["/bin/bash", "bin/es-docker"]
+CMD ["/bin/bash", "bin/entry.sh"]
