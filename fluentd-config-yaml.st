@@ -1,5 +1,3 @@
-delimiters "$", "$"
-
 fluentd-config-yaml(parent, vars) ::= <<
 kind: ConfigMap
 apiVersion: v1
@@ -8,7 +6,7 @@ metadata:
   namespace: kube-system
 data:
   kubernetes.conf: |-
-    <source>
+    \<source>
       @type tail
       path /var/log/containers/*.log
       pos_file /var/fluentd/kubernetes.pos
@@ -16,30 +14,30 @@ data:
       read_from_head true
       format json
       time_format %Y-%m-%dT%H:%M:%S.%NZ
-    </source>
+    \</source>
 
-    <filter kubernetes.**>
+    \<filter kubernetes.**>
       @type parser
       key_name log
       reserve_data true
       reserve_time true
-      <parse>
+      \<parse>
         @type grok
         custom_pattern_path /fluentd/conf.d/kubernetes.txt
-        <grok>
+        \<grok>
           pattern %{CALICO}
-        </grok>
-        <grok>
+        \</grok>
+        \<grok>
           pattern %{KUBERNETES}
-        </grok>
-      </parse>
-    </filter>
+        \</grok>
+      \</parse>
+    \</filter>
 
-    <filter kubernetes.var.log.containers.**.log>
+    \<filter kubernetes.var.log.containers.**.log>
       @type kubernetes_metadata
-    </filter>
+    \</filter>
 
-    <match kubernetes.**>
+    \<match kubernetes.**>
       @type elasticsearch
       @log_level info
       include_tag_key true
@@ -56,9 +54,9 @@ data:
       max_retry_wait 30
       disable_retry_limit
       num_threads 8
-    </match>
+    \</match>
   journal.conf: |-
-    <source>
+    \<source>
       @type systemd
       path /var/log/journal
       filters [{ "_SYSTEMD_UNIT": [ "etcd.service", "docker.service", "kubelet.service" ] }]
@@ -66,21 +64,21 @@ data:
       tag journal
       read_from_head true
       strip_underscores true
-    </source>
+    \</source>
 
-    <filter journal>
+    \<filter journal>
       @type parser
       key_name MESSAGE
       reserve_data true
       reserve_time true
-      <parse>
+      \<parse>
         @type grok
         custom_pattern_path /fluentd/conf.d/journal.txt
         grok_pattern time="%{TIMESTAMP_ISO8601:message_time}"\s+level=%{LOGLEVEL:message_level}\s+msg="%{DATA:message_message}"
-      </parse>
-    </filter>
+      \</parse>
+    \</filter>
 
-    <match journal>
+    \<match journal>
       @type elasticsearch
       @log_level info
       include_tag_key true
@@ -95,7 +93,7 @@ data:
       max_retry_wait 30
       disable_retry_limit
       num_threads 8
-    </match>
+    \</match>
   kubernetes.txt: |-
     KUBERNETES %{KUBE_LEVEL}%{KUBE_TIME:log_time}\s+%{INT}\s+%{K_MODULE}:%{K_LINE}\]\s+%{K_MESSAGE}
 
