@@ -20,6 +20,9 @@ spec:
       containers:
       - image: <vars.elasticsearch.image.name>:<vars.elasticsearch.image.version>
         name: elasticsearch-logging
+        command:
+          - bin/elasticsearch
+          - -Epath.conf=/config
         resources:
           limits:
             cpu: 1000m
@@ -38,7 +41,7 @@ spec:
         - name: es-persistent-storage
           mountPath: /usr/share/elasticsearch/data
         - name: config-volume
-          mountPath: /config.in
+          mountPath: /config
         env:
         - name: "ES_JAVA_OPTS"
           value: "-Xms<vars.elasticsearch.memory_mb>m -Xmx<vars.elasticsearch.memory_mb>m"

@@ -4,7 +4,7 @@ set -xe
 cp /config.in/elasticsearch.yml /usr/share/elasticsearch/config/
 cp /config.in/log4j2.properties /usr/share/elasticsearch/config/
 
-set +e
+set +xe
 
 # Run Elasticsearch and allow setting default settings via env vars
 #
