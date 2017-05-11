@@ -20,14 +20,13 @@ spec:
         kubernetes.io/cluster-service: "true"
     spec:
       containers:
-      - image: gcr.io/google_containers/elasticsearch:v2.4.1-2
+      - image: <vars.elasticsearch.image.name>:<vars.elasticsearch.image.version>
         name: elasticsearch-logging
         resources:
-          # need more cpu upon initialization, therefore burstable class
           limits:
-            cpu: 1000m
+            memory: <vars.elasticsearch.memory_mb>Mi
           requests:
-            cpu: 100m
+            memory: <vars.elasticsearch.memory_mb>Mi
         ports:
         - containerPort: 9200
           name: db
@@ -39,10 +38,14 @@ spec:
         - name: es-persistent-storage
           mountPath: /data
         env:
-        - name: "NAMESPACE"
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
+        - name: "cluster.name"
+          value: <vars.elasticsearch.cluster.name>
+        - name: "bootstrap.memory_lock"
+          value: true
+        - name: "ES_JAVA_OPTS"
+          value: "-Xms<vars.elasticsearch.memory_mb>m -Xmx<vars.elasticsearch.memory_mb>m"
+        - name: "discovery.zen.ping.unicast.hosts"
+          value: "elasticsearch-logging"
       volumes:
       - name: es-persistent-storage
         emptyDir: {}

@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: kibana-logging
-        image: gcr.io/google_containers/kibana:v4.6.1-1
+        image: <vars.kibana.image.name>:<vars.kibana.image.version>
         resources:
           # keep request = limit to keep this container in guaranteed class
           limits:

@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: fluentd
-        image: docker.io/erwinnttdata/fluentd-elk-debian:1.14.14-1.0.0
+        image: <vars.fluentd.image.name>:<vars.fluentd.image.version>
         env:
           - name:  FLUENT_ELASTICSEARCH_HOST
             value: "elasticsearch-logging"
@@ -36,6 +36,8 @@ spec:
         - name: varlibdockercontainers
           mountPath: /var/lib/docker/containers
           readOnly: true
+        - name: config-volume
+          mountPath: /fluentd/conf.d
       terminationGracePeriodSeconds: 30
       volumes:
       - name: varlog
@@ -44,5 +46,8 @@ spec:
       - name: varlibdockercontainers
         hostPath:
           path: /var/lib/docker/containers
+      - name: config-volume
+        configMap:
+          name: fluentd-config
 
 >>
