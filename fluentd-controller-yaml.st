@@ -26,10 +26,11 @@ spec:
             value: "9200"
         resources:
           limits:
-            memory: 200Mi
+            cpu: 100m
+            memory: 100Mi
           requests:
             cpu: 100m
-            memory: 200Mi
+            memory: 100Mi
         volumeMounts:
         - name: varlog
           mountPath: /var/log

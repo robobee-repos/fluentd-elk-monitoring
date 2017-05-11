@@ -20,11 +20,12 @@ spec:
       - name: kibana-logging
         image: <vars.kibana.image.name>:<vars.kibana.image.version>
         resources:
-          # keep request = limit to keep this container in guaranteed class
           limits:
-            cpu: 100m
+            cpu: 50m
+            memory: 80Mi
           requests:
-            cpu: 100m
+            cpu: 50m
+            memory: 80Mi
         env:
           - name: "ELASTICSEARCH_URL"
             value: "http://elasticsearch-logging:9200"
