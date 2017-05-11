@@ -38,7 +38,7 @@ spec:
         - name: es-persistent-storage
           mountPath: /data
         - name: config-volume
-          mountPath: /config
+          mountPath: /conf
         env:
         - name: "ES_JAVA_OPTS"
           value: "-Xms<vars.elasticsearch.memory_mb>m -Xmx<vars.elasticsearch.memory_mb>m"
