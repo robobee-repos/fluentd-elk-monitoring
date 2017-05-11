@@ -22,7 +22,7 @@ spec:
         name: elasticsearch-logging
         resources:
           limits:
-            cpu: 300m
+            cpu: 1000m
             memory: <vars.elasticsearch.memory_mb>Mi
           requests:
             cpu: 100m
