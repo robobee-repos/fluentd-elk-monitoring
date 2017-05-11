@@ -9,6 +9,7 @@ data:
     cluster.name: <vars.elasticsearch.cluster.name>
     network.host: 0.0.0.0
     discovery.zen.minimum_master_nodes: <vars.elasticsearch.master_nodes>
+    xpack.security.enabled: false
   log4j2.properties: |-
     status = error
 

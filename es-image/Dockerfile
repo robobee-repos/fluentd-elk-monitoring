@@ -11,8 +11,4 @@ RUN set -x \
 
 USER elasticsearch
 
-RUN set -x \
-    && elasticsearch-plugin remove x-pack \
-    && rm -rf /usr/share/elasticsearch/config/x-pack
-
 CMD ["/bin/bash", "bin/entry.sh"]

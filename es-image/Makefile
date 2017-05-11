@@ -1,6 +1,6 @@
 REPOSITORY := erwinnttdata
 NAME := elasticsearch-logging
-VERSION ?= 5.4.0-1.0.5
+VERSION ?= 5.4.0-1.0.7
 
 include docker_make_utils/Makefile.help
 include docker_make_utils/Makefile.functions
