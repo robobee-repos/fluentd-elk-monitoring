@@ -37,17 +37,16 @@ spec:
         volumeMounts:
         - name: es-persistent-storage
           mountPath: /data
+        - name: config-volume
+          mountPath: /config
         env:
-        - name: "cluster.name"
-          value: "<vars.elasticsearch.cluster.name>"
-        - name: "bootstrap.memory_lock"
-          value: "true"
         - name: "ES_JAVA_OPTS"
           value: "-Xms<vars.elasticsearch.memory_mb>m -Xmx<vars.elasticsearch.memory_mb>m"
-        - name: "discovery.zen.ping.unicast.hosts"
-          value: "elasticsearch-logging"
       volumes:
       - name: es-persistent-storage
         emptyDir: {}
+      - name: config-volume
+        configMap:
+          name: elasticsearch-logging-config
 
 >>

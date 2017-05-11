@@ -2,7 +2,7 @@ fluentd-config-yaml(parent, vars) ::= <<
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: fluentd-config
+  name: fluentd-logging-config
   namespace: kube-system
 data:
   kubernetes.conf: |-

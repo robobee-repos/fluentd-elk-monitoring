@@ -2,7 +2,7 @@ fluentd-controller-yaml(parent, vars) ::= <<
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
-  name: fluentd
+  name: fluentd-logging
   namespace: kube-system
   labels:
     k8s-app: fluentd-logging
@@ -17,7 +17,7 @@ spec:
         kubernetes.io/cluster-service: "true"
     spec:
       containers:
-      - name: fluentd
+      - name: fluentd-logging
         image: <vars.fluentd.image.name>:<vars.fluentd.image.version>
         env:
           - name:  FLUENT_ELASTICSEARCH_HOST
@@ -48,6 +48,6 @@ spec:
           path: /var/lib/docker/containers
       - name: config-volume
         configMap:
-          name: fluentd-config
+          name: fluentd-logging-config
 
 >>
