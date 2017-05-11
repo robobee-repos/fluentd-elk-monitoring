@@ -1,5 +1,5 @@
 delimiters "$", "$"
-fluentd-config-yaml(parent, vars) ::= $$
+fluentd-config-yaml(parent, vars) ::= <<
 kind: ConfigMap
 apiVersion: v1
 metadata:
@@ -221,4 +221,4 @@ data:
       }
     }
 
-$$
+>>
