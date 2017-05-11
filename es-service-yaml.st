@@ -11,9 +11,11 @@ spec:
   - port: 9200
     protocol: TCP
     targetPort: db
+    name: db
   - port: 9300
     protocol: TCP
     targetPort: transport
+    name: transport
   selector:
     k8s-app: elasticsearch-logging
 
