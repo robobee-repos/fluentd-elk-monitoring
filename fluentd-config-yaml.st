@@ -1,4 +1,4 @@
-delimiters "$", "$"
+delimiters "`", "`"
 fluentd-config-yaml(parent, vars) ::= <<
 kind: ConfigMap
 apiVersion: v1
