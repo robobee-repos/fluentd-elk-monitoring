@@ -22,8 +22,10 @@ spec:
         name: elasticsearch-logging
         resources:
           limits:
+            cpu: 300m
             memory: <vars.elasticsearch.memory_mb>Mi
           requests:
+            cpu: 100m
             memory: <vars.elasticsearch.memory_mb>Mi
         ports:
         - containerPort: 9200
