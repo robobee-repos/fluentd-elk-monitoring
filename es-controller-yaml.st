@@ -39,9 +39,9 @@ spec:
           mountPath: /data
         env:
         - name: "cluster.name"
-          value: <vars.elasticsearch.cluster.name>
+          value: "<vars.elasticsearch.cluster.name>"
         - name: "bootstrap.memory_lock"
-          value: true
+          value: "true"
         - name: "ES_JAVA_OPTS"
           value: "-Xms<vars.elasticsearch.memory_mb>m -Xmx<vars.elasticsearch.memory_mb>m"
         - name: "discovery.zen.ping.unicast.hosts"
