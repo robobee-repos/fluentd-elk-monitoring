@@ -15,6 +15,7 @@ data:
     discovery.zen.ping.unicast.hosts:
       - elasticsearch-logging
     discovery.zen.minimum_master_nodes: <vars.elasticsearch.master_nodes>
+    xpack.security.enabled: false
   log4j2.properties: |-
     status = error
 
