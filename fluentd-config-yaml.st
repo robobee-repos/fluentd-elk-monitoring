@@ -121,7 +121,8 @@ data:
     K_MESSAGE %{GREEDYDATA:log_message}
 
     LETTER \w
-  systemd.txt:
+  systemd.txt: |-
+    
   kubernetes.json: |-
     {
       "template": "kubernetes-*",
